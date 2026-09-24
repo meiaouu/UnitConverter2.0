@@ -2671,3 +2671,78 @@ nav {
     padding-right: 15px;
   }
 }
+
+/* =========================================================
+   MOBILE CLICK / TOUCH FIX
+   ========================================================= */
+
+.home-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.quick-grid {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto !important;
+}
+
+.quick-card {
+  position: relative;
+  z-index: 21;
+
+  pointer-events: auto !important;
+  touch-action: manipulation;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.quick-card * {
+  pointer-events: none;
+}
+
+/*
+ * Prevent decorative pseudo-elements from intercepting taps.
+ */
+.quick-card::before,
+.quick-card::after,
+.home-shell::before,
+.home-shell::after {
+  pointer-events: none !important;
+}
+
+/*
+ * Search results should only cover the page while actually visible.
+ */
+.search-wrap {
+  position: relative;
+}
+
+.search-panel {
+  z-index: 100;
+}
+
+/*
+ * Bottom navigation must stay below page controls except at the bottom.
+ */
+.bottom-nav {
+  z-index: 1000;
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .quick-grid {
+    position: relative;
+    z-index: 20;
+  }
+
+  .quick-card {
+    min-height: 92px;
+    touch-action: manipulation;
+    pointer-events: auto !important;
+  }
+}
