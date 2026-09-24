@@ -57,7 +57,7 @@ import { CategoryDef } from '../core/models/models';
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-button
-            (clicke )="back()"
+            (click)="back()"
             aria-label="Go back"
           >
             <ion-icon name="arrow-back-outline"></ion-icon>
@@ -264,24 +264,24 @@ export class ConverterPage implements OnInit, OnDestroy {
 
   timer?: ReturnType<typeof setTimeout>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private location: Location,
-    public conv: ConversionService,
-    public state: AppStateService,
-    private toast: ToastController
-  ) {
-    addIcons({
-      arrowBackOutline,
-      starOutline,
-      star,
-      swapVerticalOutline,
-      copyOutline,
-      shareSocialOutline,
-      trashOutline,
-      repeatOutline
-    });
-  }
+constructor(
+  private route: ActivatedRoute,
+  private location: Location,
+  public conv: ConversionService,
+  public state: AppStateService,
+  private toast: ToastController
+) {
+  addIcons({
+    arrowBackOutline,
+    starOutline,
+    star,
+    swapVerticalOutline,
+    copyOutline,
+    shareSocialOutline,
+    trashOutline,
+    repeatOutline
+  });
+}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -808,7 +808,7 @@ export class ConverterPage implements OnInit, OnDestroy {
    * BACK
    */
 
-  back(): void {
-    this.location.back();
-  }
+back(): void {
+  this.location.back();
+}
 }
