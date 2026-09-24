@@ -1,0 +1,194 @@
+<ion-content [fullscreen]="true">
+
+  <main class="page-shell settings-shell">
+
+    <header class="topbar">
+      <h1>Settings</h1>
+    </header>
+
+    <!-- Appearance -->
+    <h2 class="settings-heading">Appearance</h2>
+
+    <section class="settings-card">
+
+      <div class="setting-row">
+        <ion-icon name="moon-outline"></ion-icon>
+
+        <span>
+          <strong>Theme</strong>
+          <small>Choose how Unit Converter looks</small>
+        </span>
+
+        <ion-select
+          [(ngModel)]="appearance"
+          (ionChange)="setAppearance()"
+          interface="popover"
+          aria-label="Theme"
+        >
+          <ion-select-option value="dark">
+            Dark
+          </ion-select-option>
+
+          <ion-select-option value="light">
+            Light
+          </ion-select-option>
+
+          <ion-select-option value="system">
+            System
+          </ion-select-option>
+        </ion-select>
+      </div>
+
+    </section>
+
+
+    <!-- Conversion -->
+    <h2 class="settings-heading">Conversion</h2>
+
+    <section class="settings-card">
+
+      <div class="setting-row">
+        <ion-icon name="calculator-outline"></ion-icon>
+
+        <span>
+          <strong>Decimal precision</strong>
+          <small>Number of decimal places in results</small>
+        </span>
+
+        <ion-select
+          [(ngModel)]="precision"
+          (ionChange)="setPrecision()"
+          interface="popover"
+          aria-label="Decimal precision"
+        >
+          <ion-select-option value="auto">
+            Auto
+          </ion-select-option>
+
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+          <ion-select-option value="6">6</ion-select-option>
+        </ion-select>
+      </div>
+
+    </section>
+
+
+    <!-- History -->
+    <h2 class="settings-heading">History</h2>
+
+    <section class="settings-card">
+
+      <div class="setting-row">
+        <ion-icon name="time-outline"></ion-icon>
+
+        <span>
+          <strong>Recent conversions</strong>
+
+          <small>
+            {{ historyCount }}
+            {{ historyCount === 1 ? 'saved conversion' : 'saved conversions' }}
+          </small>
+        </span>
+      </div>
+
+      <div class="setting-row">
+        <ion-icon name="trash-outline"></ion-icon>
+
+        <span>
+          <strong>Clear history</strong>
+          <small>Delete all recent conversions</small>
+        </span>
+
+        <button
+          type="button"
+          class="danger-text"
+          [disabled]="historyCount === 0"
+          (click)="clearHistory()"
+        >
+          Clear
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- Information -->
+    <h2 class="settings-heading">Information</h2>
+
+    <section class="settings-card link-card">
+
+      <button
+        type="button"
+        (click)="go('/about')"
+      >
+        <span class="settings-link-content">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <strong>About</strong>
+        </span>
+
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+
+
+      <button
+        type="button"
+        (click)="go('/privacy')"
+      >
+        <span class="settings-link-content">
+          <ion-icon name="shield-checkmark-outline"></ion-icon>
+          <strong>Privacy Policy</strong>
+        </span>
+
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+
+
+      <button
+        type="button"
+        (click)="go('/terms')"
+      >
+        <span class="settings-link-content">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <strong>Terms of Use</strong>
+        </span>
+
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+
+    </section>
+
+
+    <!-- App -->
+    <h2 class="settings-heading">App</h2>
+
+    <section class="settings-card">
+
+      <div class="setting-row">
+        <ion-icon name="refresh-outline"></ion-icon>
+
+        <span>
+          <strong>Welcome screen</strong>
+          <small>Show the introduction again</small>
+        </span>
+
+        <button
+          type="button"
+          class="text-btn"
+          (click)="resetOnboarding()"
+        >
+          Reset
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+</ion-content>
+
+<app-bottom-nav active="settings"></app-bottom-nav>
