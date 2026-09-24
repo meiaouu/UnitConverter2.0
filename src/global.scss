@@ -283,26 +283,41 @@ ion-searchbar {
    WELCOME
    ========================================================= */
 
+/* =========================================================
+   WELCOME PAGE - DARK / LIGHT THEME
+   ========================================================= */
+
 .welcome-content {
-  --background: #f5f8fc;
-  --color: #1f2a3a;
+  --background: var(--uc-bg);
+  --color: var(--uc-text);
+
+  background: var(--uc-bg);
+  color: var(--uc-text);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .welcome {
+  width: 100%;
   min-height: 100%;
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
+  justify-content: center;
 
   text-align: center;
 
   padding:
-    12vh
+    max(40px, env(safe-area-inset-top))
     28px
-    40px;
+    max(40px, env(safe-area-inset-bottom));
 }
+
+
+/* Logo / conversion icon */
 
 .welcome-mark {
   width: 94px;
@@ -310,16 +325,36 @@ ion-searchbar {
 
   border-radius: 27px;
 
-  background: #e0edff;
+  background:
+    color-mix(
+      in srgb,
+      var(--uc-accent) 15%,
+      var(--uc-surface)
+    );
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--uc-accent) 25%,
+      transparent
+    );
 
   display: grid;
   place-items: center;
 
-  color: #3478d4;
+  color: var(--uc-accent);
 
   box-shadow:
     0 18px 40px
-    #a7c7ef44;
+    color-mix(
+      in srgb,
+      var(--uc-accent) 14%,
+      transparent
+    );
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .welcome-mark ion-icon {
@@ -330,119 +365,218 @@ ion-searchbar {
   margin-top: -24px;
 }
 
+
+/* UNIT CONVERTER */
+
 .welcome .eyebrow {
   margin-top: 20px;
-  color: #3478d4;
+  margin-bottom: 8px;
+
+  color: var(--uc-accent);
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
 }
 
-.welcome h1 {
-  font-size:
-    clamp(
-      44px,
-      9vw,
-      64px
-    );
 
+/* Main title */
+
+.welcome h1 {
+  margin: 5px 0 18px;
+
+  color: var(--uc-text);
+
+  font-size: clamp(44px, 7vw, 64px);
   font-weight: 400;
 
   letter-spacing: -0.04em;
-
-  margin:
-    5px
-    0
-    18px;
-
   line-height: 1.05;
 }
 
 .welcome h1 em {
-  font-style: normal;
   color: #f08a66;
+  font-style: normal;
 }
+
+
+/* Subtitle */
 
 .welcome-sub {
-  color: #687a94;
+  margin: 0;
+
+  color: var(--uc-muted);
+
+  line-height: 1.5;
 }
 
+
+/* Example conversion */
+
 .example {
-  width:
-    min(
-      100%,
-      420px
-    );
+  width: min(100%, 420px);
+  min-height: 82px;
 
-  height: 82px;
-
-  border:
-    1px solid
-    #cbdcf4;
-
-  border-radius: 18px;
-
-  background: #ffffff;
+  margin: 26px 0 30px;
+  padding: 14px 20px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   gap: 24px;
 
-  margin:
-    26px
-    0
-    30px;
+  background: var(--uc-surface);
+
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--uc-accent) 35%,
+      var(--uc-border)
+    );
+
+  border-radius: 18px;
+
+  color: var(--uc-text);
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .example b {
-  background: #f3f7fd;
-
   padding: 11px;
 
+  background: var(--uc-surface2);
+
   border-radius: 11px;
+
+  color: var(--uc-text);
 }
 
 .example span {
-  color: #3478d4;
+  color: var(--uc-accent);
   font-size: 24px;
 }
 
-.primary-btn {
-  width:
-    min(
-      100%,
-      325px
-    );
 
-  height: 50px;
+/* Get Started */
+
+.primary-btn {
+  width: min(100%, 325px);
+  min-height: 50px;
 
   border: 0;
-
   border-radius: 13px;
 
-  background: #397bd5;
-  color: white;
+  background: var(--uc-accent);
+  color: #ffffff;
 
   font-weight: 700;
 
-  box-shadow:
-    0 4px 9px
-    #235da355;
+  cursor: pointer;
 
-  transition: 0.15s;
+  box-shadow:
+    0 6px 18px
+    color-mix(
+      in srgb,
+      var(--uc-accent) 30%,
+      transparent
+    );
+
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+.primary-btn:hover {
+  filter: brightness(1.07);
 }
 
 .primary-btn:active {
-  transform:
-    translateY(1px)
-    scale(0.99);
+  transform: translateY(1px) scale(0.99);
 }
+
+
+/* No account required */
 
 .welcome small {
-  margin-top: 60px;
-  color: #8795aa;
+  margin-top: 54px;
+
+  color: var(--uc-muted);
 }
 
+
+/* =========================================================
+   WELCOME RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 620px) {
+
+  .welcome {
+    justify-content: flex-start;
+
+    padding:
+      max(9vh, 45px)
+      20px
+      35px;
+  }
+
+  .welcome-mark {
+    width: 82px;
+    height: 82px;
+
+    border-radius: 23px;
+  }
+
+  .welcome h1 {
+    font-size: clamp(40px, 12vw, 50px);
+  }
+
+  .example {
+    width: min(100%, 390px);
+
+    gap: 18px;
+  }
+
+  .primary-btn {
+    width: min(100%, 325px);
+  }
+
+  .welcome small {
+    margin-top: 42px;
+  }
+}
+
+
+@media (max-width: 380px) {
+
+  .welcome {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .welcome h1 {
+    font-size: 38px;
+  }
+
+  .welcome-sub {
+    font-size: 14px;
+  }
+
+  .example {
+    gap: 12px;
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .example b {
+    padding: 9px;
+  }
+}
 /* =========================================================
    SEARCH
    ========================================================= */
@@ -1815,5 +1949,725 @@ ion-searchbar {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE + HIDDEN SCROLLBARS
+   Keep this at the END of global.scss
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HIDE SCROLLBARS EVERYWHERE
+   Scrolling still works with wheel, touch and trackpad
+   --------------------------------------------------------- */
+
+html,
+body,
+ion-app,
+ion-content,
+ion-router-outlet,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+ion-app::-webkit-scrollbar,
+ion-content::-webkit-scrollbar,
+ion-router-outlet::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+/* Ionic ion-content scrolls inside its shadow part */
+ion-content::part(scroll) {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+ion-content::part(scroll)::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   PREVENT HORIZONTAL PAGE OVERFLOW
+   --------------------------------------------------------- */
+
+html,
+body,
+ion-app {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+ion-content {
+  width: 100%;
+  max-width: 100%;
+  --overflow: auto;
+}
+
+.page-shell,
+.converter-shell,
+.info-shell,
+.settings-shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+main,
+section,
+article,
+div,
+header,
+nav {
+  min-width: 0;
+}
+
+
+/* ---------------------------------------------------------
+   DESKTOP / DEFAULT
+   --------------------------------------------------------- */
+
+.page-shell,
+.converter-shell,
+.info-shell {
+  width: 100%;
+  padding-left: clamp(16px, 3vw, 64px);
+  padding-right: clamp(16px, 3vw, 64px);
+  padding-bottom:
+    calc(
+      100px +
+      env(safe-area-inset-bottom)
+    );
+}
+
+/* Full-width header */
+.topbar {
+  margin-left: calc(clamp(16px, 3vw, 64px) * -1);
+  margin-right: calc(clamp(16px, 3vw, 64px) * -1);
+
+  padding-left: clamp(16px, 3vw, 64px);
+  padding-right: clamp(16px, 3vw, 64px);
+}
+
+/* Keep converter readable on huge displays */
+.converter-shell {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Keep information/legal pages readable */
+.info-shell {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE GRIDS
+   --------------------------------------------------------- */
+
+.quick-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(145px, 1fr)
+    );
+
+  gap: 12px;
+  width: 100%;
+}
+
+.category-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(240px, 1fr)
+    );
+
+  gap: 12px;
+  width: 100%;
+}
+
+.recent-preview {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px, 1fr)
+    );
+
+  gap: 10px;
+  width: 100%;
+}
+
+.list-cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(300px, 1fr)
+    );
+
+  gap: 12px;
+  width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   MOST USED
+   --------------------------------------------------------- */
+
+.horizontal-cards {
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+
+  gap: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+
+  scroll-snap-type: x proximity;
+}
+
+.horizontal-cards::-webkit-scrollbar {
+  display: none !important;
+}
+
+.mini-card {
+  flex: 0 0 clamp(135px, 18vw, 220px);
+
+  min-width: 135px;
+  max-width: 220px;
+
+  scroll-snap-align: start;
+}
+
+
+/* ---------------------------------------------------------
+   BOTTOM NAV
+   --------------------------------------------------------- */
+
+.bottom-nav {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  max-width: 100%;
+
+  transform: none;
+
+  z-index: 1000;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  height:
+    calc(
+      66px +
+      env(safe-area-inset-bottom)
+    );
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
+}
+
+.bottom-nav a {
+  min-width: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  white-space: nowrap;
+}
+
+.bottom-nav a span {
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.bottom-nav ion-icon {
+  flex-shrink: 0;
+}
+
+
+/* ---------------------------------------------------------
+   SETTINGS
+   --------------------------------------------------------- */
+
+.settings-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.setting-row {
+  width: 100%;
+  min-width: 0;
+}
+
+.setting-row > span {
+  min-width: 0;
+}
+
+.setting-row strong,
+.setting-row small {
+  overflow-wrap: anywhere;
+}
+
+.setting-row ion-select {
+  flex: 0 1 180px;
+
+  width: auto;
+  min-width: 90px;
+  max-width: 180px;
+}
+
+
+/* ---------------------------------------------------------
+   CONVERTER
+   --------------------------------------------------------- */
+
+.conversion-panel,
+.equation,
+.favorite-wide,
+.quick-values {
+  width: 100%;
+  max-width: 100%;
+}
+
+.value-row {
+  width: 100%;
+  min-width: 0;
+}
+
+.value-row ion-input,
+.value-row ion-select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.result-value {
+  min-width: 0;
+  max-width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .page-shell,
+  .converter-shell,
+  .info-shell {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .topbar {
+    margin-left: -24px;
+    margin-right: -24px;
+
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .converter-shell,
+  .settings-shell,
+  .info-shell {
+    max-width: 100%;
+  }
+
+  .action-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 620px) {
+
+  .page-shell,
+  .converter-shell,
+  .info-shell {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    padding-bottom:
+      calc(
+        92px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .topbar {
+    margin-left: -15px;
+    margin-right: -15px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .hero-title {
+    font-size: clamp(25px, 8vw, 29px);
+  }
+
+  .intro {
+    font-size: 14px;
+  }
+
+
+  /* Quick conversions */
+
+  .quick-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+  }
+
+  .quick-card {
+    min-height: 94px;
+    padding: 10px 6px;
+  }
+
+
+  /* Categories */
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Converter */
+
+  .converter-intro {
+    align-items: flex-start;
+  }
+
+  .converter-intro h1 {
+    font-size: 24px;
+  }
+
+  .value-row {
+    grid-template-columns: 1fr;
+  }
+
+  .value-row ion-input {
+    font-size: 23px;
+  }
+
+  .result-value {
+    font-size: 23px;
+  }
+
+  .action-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-values div {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  /* Lists */
+
+  .list-cards,
+  .recent-preview {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Settings */
+
+  .setting-row {
+    padding: 12px;
+  }
+
+  .setting-row > ion-icon {
+    flex: 0 0 auto;
+  }
+
+  .setting-row ion-select {
+    flex: 0 1 110px;
+
+    min-width: 80px;
+    max-width: 110px;
+  }
+
+
+  /* Bottom navigation */
+
+  .bottom-nav {
+    height:
+      calc(
+        64px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .bottom-nav a {
+    font-size: 10px;
+    gap: 3px;
+  }
+
+  .bottom-nav ion-icon {
+    font-size: 20px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   SMALL PHONES
+   --------------------------------------------------------- */
+
+@media (max-width: 390px) {
+
+  .page-shell,
+  .converter-shell,
+  .info-shell {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .topbar {
+    margin-left: -12px;
+    margin-right: -12px;
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .quick-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-card {
+    min-height: 88px;
+    font-size: 12px;
+  }
+
+  .quick-card ion-icon {
+    font-size: 23px;
+  }
+
+  .setting-row {
+    gap: 8px;
+  }
+
+  .setting-row > ion-icon {
+    font-size: 19px;
+  }
+
+  .setting-row strong {
+    font-size: 13px;
+  }
+
+  .setting-row small {
+    font-size: 10px;
+  }
+
+  .setting-row ion-select {
+    min-width: 72px;
+    max-width: 92px;
+
+    font-size: 12px;
+  }
+
+  .bottom-nav a {
+    font-size: 9px;
+  }
+
+  .bottom-nav ion-icon {
+    font-size: 19px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   ULTRA SMALL PHONES
+   --------------------------------------------------------- */
+
+@media (max-width: 330px) {
+
+  .bottom-nav a span {
+    font-size: 8px;
+  }
+
+  .bottom-nav ion-icon {
+    font-size: 18px;
+  }
+
+  .quick-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .action-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   LARGE DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1400px) {
+
+  .quick-grid {
+    grid-template-columns:
+      repeat(6, minmax(0, 1fr));
+  }
+
+  .category-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+/* ---------------------------------------------------------
+   VERY LARGE DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1900px) {
+
+  .quick-grid {
+    grid-template-columns:
+      repeat(7, minmax(0, 1fr));
+  }
+
+  .category-grid {
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TOUCH DEVICES
+   --------------------------------------------------------- */
+
+@media (hover: none) {
+
+  .quick-card:hover,
+  .category-card:hover {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* =========================================================
+   FULL-WIDTH SETTINGS PAGE
+   ========================================================= */
+
+.settings-shell {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+
+  padding-left: clamp(15px, 3vw, 48px);
+  padding-right: clamp(15px, 3vw, 48px);
+  padding-bottom:
+    calc(
+      100px +
+      env(safe-area-inset-bottom)
+    );
+}
+
+/* Settings header should also span the page */
+.settings-shell .topbar {
+  margin-left: calc(clamp(15px, 3vw, 48px) * -1);
+  margin-right: calc(clamp(15px, 3vw, 48px) * -1);
+
+  padding-left: clamp(15px, 3vw, 48px);
+  padding-right: clamp(15px, 3vw, 48px);
+}
+
+/* Cards use all available width */
+.settings-shell .settings-card {
+  width: 100%;
+  max-width: none;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .settings-shell {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .settings-shell .topbar {
+    margin-left: -24px;
+    margin-right: -24px;
+
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .settings-shell {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .settings-shell .topbar {
+    margin-left: -15px;
+    margin-right: -15px;
+
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
